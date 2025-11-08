@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Calculator from './components/Calculator.vue'
 import RateSelector from './components/RateSelector.vue'
 </script>
 
 <template>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
+  <Calculator />
   <RateSelector />
 </template>

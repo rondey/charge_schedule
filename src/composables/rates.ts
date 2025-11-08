@@ -24,14 +24,13 @@ export class Rate {
 export const F2 = new Rate("F2", 19, 8, [0, 6]);
 export const F3 = new Rate("F3", 23, 7, [0]);
 
+const rate = ref<Rate>(F2);
+
 // by convention, composable function names start with "use"
 export function useRate(): {
   rate: Ref<Rate>;
   setRate: (newRate: string) => void;
 } {
-  // state encapsulated and managed by the composable
-  const rate = ref<Rate>(F2);
-
   // a composable can update its managed state over time.
   function setRate(newRate: string) {
     if (newRate === "F2") {
@@ -47,11 +46,15 @@ export function useRate(): {
   });
 
   onMounted(() => {
-    const localRate = localStorage.getItem("name");
+    const localRate = localStorage.getItem("rate");
     if (localRate === "F3") {
       rate.value = F3;
     } else {
       rate.value = F2;
+    }
+
+    if (!localRate) {
+      localStorage.setItem("rate", rate.value.name);
     }
   });
 
