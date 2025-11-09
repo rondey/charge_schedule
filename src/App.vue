@@ -4,7 +4,7 @@ import RateSelector from './components/RateSelector.vue'
 </script>
 
 <template>
-  <div class="container-fluid mt-4">
+  <div class="container-fluid d-flex flex-column justify-content-center min-vh-100">
     <Calculator />
     <RateSelector />
   </div>
