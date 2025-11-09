@@ -64,12 +64,13 @@ onMounted(() => {
     <span class="input-group-text" id="percentage-symbol">%</span>
     <label for="percentage">Current State of Charge</label>
   </div>
-  <div class="form-floating  mb-3">
+  <div class="form-floating input-group mb-3">
     <input type="time" id="dateStart" class="form-control" :value="format(dateStart, 'HH:mm')" @input="event => {
       const inputValue = (event.target as HTMLSelectElement).value;
       const [hours, minutes] = inputValue.split(':').map(Number);
       dateStart = roundToHalfHour(setTime(new Date(), hours || 0, minutes || 0));
     }" />
+    <span class="input-group-text" id="clock-symbol"><i class="bi bi-clock"></i></span>
     <label for="dateStart">Date Start</label>
   </div>
 
