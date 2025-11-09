@@ -59,24 +59,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <input type="number" id="percentage" v-model.number="percentage" /> %
+  <div class="form-floating input-group mb-3">
+    <input type="number" id="percentage" class="form-control" v-model.number="percentage" />
+    <span class="input-group-text" id="percentage-symbol">%</span>
+    <label for="percentage">Current State of Charge</label>
   </div>
-  <div>
-    <input type="time" id="dateStart" :value="format(dateStart, 'HH:mm')" @input="event => {
+  <div class="form-floating  mb-3">
+    <input type="time" id="dateStart" class="form-control" :value="format(dateStart, 'HH:mm')" @input="event => {
       const inputValue = (event.target as HTMLSelectElement).value;
       const [hours, minutes] = inputValue.split(':').map(Number);
       dateStart = roundToHalfHour(setTime(new Date(), hours || 0, minutes || 0));
     }" />
+    <label for="dateStart">Date Start</label>
   </div>
-  <p>Charge until: <b>{{ format(dateEnd, "HH:mm") }}</b></p>
 
-  <p v-if="percentageHourSuggested > 0"><b>WARNING:</b> You should
-    stop at <b>{{ rate.endHour }}</b> with a state of charge of <b>{{ percentageHourSuggested }}</b></p>
+  <div class="card border-success text-center mt-3 mb-3 shadow-sm">
+    <div class="card-body py-2">
+      <h5 class="card-title text-success mb-0">
+        🔋 Charge until: <span class="badge bg-success fs-4">{{ format(dateEnd, "HH:mm") }} <i
+            class="bi bi-clock"></i></span>
+      </h5>
+    </div>
+  </div>
+
+  <div class="alert alert-warning text-center" v-if="percentageHourSuggested > 0"><b>WARNING:</b> You should
+    stop at <b>0{{ rate.endHour }}:00</b> with a state of charge of
+    <p>
+      <span class="badge bg-warning fs-4">{{
+        percentageHourSuggested }}%</span>
+    </p>
+  </div>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

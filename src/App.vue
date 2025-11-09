@@ -4,6 +4,8 @@ import RateSelector from './components/RateSelector.vue'
 </script>
 
 <template>
-  <Calculator />
-  <RateSelector />
+  <div class="container-fluid mt-4">
+    <Calculator />
+    <RateSelector />
+  </div>
 </template>
