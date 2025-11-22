@@ -40,9 +40,9 @@ watchEffect(() => {
 })
 
 onMounted(() => {
-  // const now = new Date()
+  const now = new Date()
   // const now = setHours(new Date(), 1) // For testing purposes, set current time to 01:xx
-  const now = nextMonday(new Date()) // For testing purposes, set current time to next Monday
+  // const now = nextMonday(new Date()) // For testing purposes, set current time to next Monday
 
   const nowHours = now.getHours()
   if (nowHours > 23 || nowHours < rate.value.endHour) {
