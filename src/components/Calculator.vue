@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watchEffect } from 'vue'
-import { format, roundToNearestMinutes, setHours, setMinutes, addMinutes, nextMonday, differenceInMinutes } from "date-fns"
+import {
+  format,
+  roundToNearestMinutes,
+  setHours,
+  setMinutes,
+  addMinutes,
+  // nextMonday, 
+  differenceInMinutes
+} from "date-fns"
 import { useRate } from '../composables/rates'
 
 const percentage = ref(0)
