@@ -124,6 +124,7 @@
 
 <div class="input mb-3">
   <div class="input-floating grow">
+    <!-- Padding top used to fix the position in iOS devices-->
     <input
       type="time"
       id="dateStart"
