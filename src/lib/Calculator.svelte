@@ -128,6 +128,7 @@
       type="time"
       id="dateStart"
       class="grow"
+      style="padding-top: 5px;"
       value={format(dateStart, "HH:mm")}
       on:input={handleDateStartInput}
     />
