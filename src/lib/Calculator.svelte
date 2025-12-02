@@ -109,47 +109,53 @@
   });
 </script>
 
-<div class="form-floating input-group mb-3">
-  <input
-    type="number"
-    id="percentage"
-    class="form-control"
-    bind:value={percentage}
-  />
-  <span class="input-group-text" id="percentage-symbol">%</span>
-  <label for="percentage">Current State of Charge</label>
-</div>
-
-<div class="form-floating input-group mb-3">
-  <input
-    type="time"
-    id="dateStart"
-    class="form-control"
-    value={format(dateStart, "HH:mm")}
-    on:input={handleDateStartInput}
-  />
-  <span class="input-group-text" id="clock-symbol"
-    ><i class="bi bi-clock"></i></span
+<div class="input mb-3">
+  <div class="input-floating grow">
+    <input type="number" id="percentage" class="grow" bind:value={percentage} />
+    <label class="input-floating-label ms-0" for="percentage"
+      >Current State of Charge</label
+    >
+  </div>
+  <span
+    class="text-base-content/80 my-auto ms-3 shrink-0"
+    id="percentage-symbol">%</span
   >
-  <label for="dateStart">Date Start</label>
 </div>
 
-<div class="card border-success text-center mt-3 mb-3 shadow-sm">
-  <div class="card-body py-2">
-    <h5 class="card-title text-success mb-0">
-      🔋 Charge until: <span class="badge bg-success fs-4"
-        >{format(dateEnd, "HH:mm")} <i class="bi bi-clock"></i></span
-      >
+<div class="input mb-3">
+  <div class="input-floating grow">
+    <input
+      type="time"
+      id="dateStart"
+      class="grow"
+      value={format(dateStart, "HH:mm")}
+      on:input={handleDateStartInput}
+    />
+    <label class="input-floating-label ms-0" for="dateStart">Date Start</label>
+  </div>
+  <span class="text-base-content/80 my-auto ms-3 shrink-0" id="clock-symbol">
+    <span class="icon-[solar--clock-circle-linear]"></span>
+  </span>
+</div>
+
+<div class="alert alert-soft alert-success text-center mt-3 mb-3 shadow-sm">
+  <div class="py-2">
+    <h5 class="text-success mb-0">
+      🔋 Charge until:
+      <span class="badge badge-success badge-xl">
+        {format(dateEnd, "HH:mm")}
+        <span class="icon-[solar--clock-circle-linear]"></span>
+      </span>
     </h5>
   </div>
 </div>
 
 {#if percentageHourSuggested > 0}
-  <div class="alert alert-warning text-center">
+  <div class="alert alert-soft alert-warning text-center mb-3">
     <b>WARNING:</b> You should stop at <b>0{$rate.endHour}:00</b> with a state
     of charge of
-    <p>
-      <span class="badge bg-warning fs-4">{percentageHourSuggested}%</span>
-    </p>
+    <span class="badge badge-warning badge-xl">
+      {percentageHourSuggested}%
+    </span>
   </div>
 {/if}

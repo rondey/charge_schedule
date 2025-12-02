@@ -5,7 +5,7 @@
 
 <main>
   <div
-    class="container-fluid d-flex flex-column justify-content-center min-vh-100"
+    class="min-h-screen flex flex-col items-center justify-center w-full p-4"
   >
     <Calculator />
     <RateSelector />

@@ -11,15 +11,15 @@
   }
 </script>
 
-<div class="form-floating">
+<div class="input-floating">
   <select
     id="rate_selector"
-    class="form-control"
+    class="input"
     value={$rate.name}
     on:change={handleRateChange}
   >
     <option>F2</option>
     <option>F3</option>
   </select>
-  <label for="rate_selector">Rate selector</label>
+  <label class="input-floating-label" for="rate_selector">Rate selector</label>
 </div>
