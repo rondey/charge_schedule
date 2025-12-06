@@ -52,4 +52,12 @@ export default defineConfig({
   server: {
     allowedHosts: ["localhost"],
   },
+  build: {
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        passes: 5,
+      },
+    },
+  },
 });
