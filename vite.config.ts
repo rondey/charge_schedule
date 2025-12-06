@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { VitePWA } from "vite-plugin-pwa";
 import tailwindcss from "@tailwindcss/vite";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -48,6 +49,7 @@ export default defineConfig({
         ],
       },
     }),
+    cssInjectedByJsPlugin(),
   ],
   server: {
     allowedHosts: ["localhost"],
@@ -59,5 +61,6 @@ export default defineConfig({
         passes: 5,
       },
     },
+    cssCodeSplit: false,
   },
 });

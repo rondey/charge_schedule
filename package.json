@@ -27,6 +27,7 @@
     "date-fns": "^4.1.0",
     "flyonui": "^2.4.1",
     "tailwindcss": "^4.1.17",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-pwa": "^1.2.0"
   }
 }
