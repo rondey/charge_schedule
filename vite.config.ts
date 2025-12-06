@@ -40,9 +40,9 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: "maskable-icon-512x512.png",
+            src: "maskable-icon-512x512.webp",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/webp",
             purpose: "maskable",
           },
         ],
