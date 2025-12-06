@@ -3,8 +3,6 @@
   import {
     format,
     roundToNearestMinutes,
-    setHours,
-    setMinutes,
     addMinutes,
     differenceInMinutes,
   } from "date-fns";
@@ -30,17 +28,6 @@
   }
 
   /**
-   * Imposta l'ora e i minuti di una data.
-   * @param date La data di base.
-   * @param hours Le ore da impostare.
-   * @param minutes I minuti da impostare (default 0).
-   * @returns La nuova data con l'ora impostata.
-   */
-  function setTime(date: Date, hours: number, minutes: number = 0): Date {
-    return setHours(setMinutes(date, minutes), hours);
-  }
-
-  /**
    * Calcola l'ora di fine della ricarica.
    */
   function calculateEndDate(): void {
@@ -60,11 +47,11 @@
     const isHolyday = $rate.holydays.includes(dateEnd.getDay());
 
     if (isPastEndHour && !isHolyday) {
+      const dateEndRate = new Date(dateEnd);
+      dateEndRate.setHours($rate.endHour);
+
       // Calcola i minuti eccedenti l'orario di fine tariffa
-      const minutesUntilEndHour = differenceInMinutes(
-        dateEnd,
-        setTime(dateEnd, $rate.endHour)
-      );
+      const minutesUntilEndHour = differenceInMinutes(dateEnd, dateEndRate);
 
       // Calcola la percentuale di carica raggiunta all'orario di fine tariffa
       // sottraendo la carica in eccesso (minutesUntilEndHour * minutelyPercentage) dall'obiettivo (maxPercentage)
@@ -75,7 +62,6 @@
     }
   }
 
-  // 👇 CORREZIONE APPLICATA QUI:
   // Dipendenze esplicite per forzare l'aggiornamento quando 'percentage', 'dateStart' o lo store '$rate' cambiano.
   $: percentage, dateStart, $rate, calculateEndDate();
 
@@ -89,8 +75,11 @@
     const hours = parseInt(hoursStr, 10) || 0;
     const minutes = parseInt(minutesStr, 10) || 0;
 
+    const dateStartToRound = new Date();
+    dateStartToRound.setHours(hours, minutes);
+
     // Imposta e arrotonda la nuova data di inizio
-    dateStart = roundToHalfHour(setTime(new Date(), hours, minutes));
+    dateStart = roundToHalfHour(dateStartToRound);
   }
 
   // onMounted in Svelte
@@ -104,7 +93,8 @@
       dateStart = roundToHalfHour(now);
     } else {
       // Imposta a 23:00 di oggi
-      dateStart = setTime(now, 23, 0);
+      dateStart = new Date(now);
+      dateStart.setHours(23, 0);
     }
   });
 </script>
